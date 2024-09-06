@@ -1,27 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
+
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:text="APPS-IoT - Lab2"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:paddingTop="6dp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:paddingTop="30dp"
+        android:text="Bienvenido"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="164dp"
+        android:layout_height="162dp"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/antenna_logo" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        android:paddingTop="30dp"
+        android:text="TeleGame"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:hint="Introduce texto aquí"
+        android:inputType="text"
+        />
 
     <Button
         android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:layout_width="204dp"
         android:layout_height="wrap_content"
         android:text="Button"
         tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="549dp" />
+        tools:layout_editor_absoluteY="549dp"
+        android:layout_margin="70dp"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
