@@ -12,18 +12,23 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:text="APPS-IoT - Lab2"
+        android:layout_height="59dp"
+        android:paddingTop="12dp"
+        android:text="APPSIoT - Lab2"
         android:textAlignment="center"
-        android:textSize="24sp"
-        android:paddingTop="6dp"/>
+        android:textSize="24sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+    android:background="#000000" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="96dp"
         android:paddingTop="30dp"
-        android:text="Bienvenido"
+        android:text="BIENVENIDO"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -45,22 +50,30 @@
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:hint="Introduce texto aquí"
+        android:hint="Ingrese su nombre"
         android:inputType="text"
-        />
+        android:layout_gravity="center"
+        android:textAlignment="center"/>
 
     <Button
         android:id="@+id/button"
         android:layout_width="204dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Jugar"
         tools:layout_editor_absoluteX="160dp"
         tools:layout_editor_absoluteY="549dp"
-        android:layout_margin="70dp"/>
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 
 </LinearLayout>
