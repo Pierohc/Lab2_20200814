@@ -3,6 +3,10 @@
     <string-array name="words">
         <item>FIBRA</item>
         <item>TELECO</item>
+        <item>REDES</item>
+        <item>ANTENA</item>
+        <item>PROPA</item>
+        <item>CLOUD</item>
     </string-array>
 
 </resources>

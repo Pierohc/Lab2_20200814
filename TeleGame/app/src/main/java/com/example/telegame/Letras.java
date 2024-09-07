@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Letras extends BaseAdapter {
 
@@ -43,9 +44,11 @@ public class Letras extends BaseAdapter {
         }
         Button btnLetter = view.findViewById(R.id.buttonLetra);
         String letra = letras[i];
-        System.out.println(letra); 
+        System.out.println(letra);
         btnLetter.setText(letra);
 
         return view;
     }
+
+
 }

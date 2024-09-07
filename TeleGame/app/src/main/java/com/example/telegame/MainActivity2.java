@@ -1,5 +1,6 @@
 package com.example.telegame;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -29,6 +31,11 @@ public class MainActivity2 extends AppCompatActivity {
     private Letras adaptador;
     private GridView gridView;
     private String palabras[];
+    private int numCorrecto;
+    private int numChars;
+    private ImageView[]persona;
+    private int sizeParts = 6;
+    private int parteActual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +63,15 @@ public class MainActivity2 extends AppCompatActivity {
         palabras = getResources().getStringArray(R.array.words);
         layoutPalabras = findViewById(R.id.palabras);
         gridView=findViewById(R.id.grid);
+        persona = new ImageView[sizeParts];
+        persona[0] = findViewById(R.id.head);
+        persona[1] = findViewById(R.id.torso);
+        persona[2] = findViewById(R.id.left_arm);
+        persona[3] = findViewById(R.id.right_arm);
+        persona[4] = findViewById(R.id.left_leght);
+        persona[5] = findViewById(R.id.right_leg);
 
         iniciarJuego();
-
-
-
 
     }
 
@@ -95,8 +106,57 @@ public class MainActivity2 extends AppCompatActivity {
 
         adaptador=new Letras(this);
         gridView.setAdapter(adaptador);
+        numCorrecto=0;
+        numChars = palabraActual.length();
+        parteActual = 0;
+
+    }
 
 
+    public void letraPresionada(View view){
+        String letra = ((TextView)view).getText().toString();
+        char letraChar = letra.charAt(0);
+
+        view.setEnabled(false);
+        boolean palabraCorrecta = false;
+
+        for(int i=0; i<palabraActual.length(); i++){
+            if(palabraActual.charAt(i)==letraChar){
+                palabraCorrecta=true;
+                numCorrecto++;
+                charViews[i].setTextColor(Color.BLACK);
+
+            }
+        }
+
+        if(palabraCorrecta){
+            if(numCorrecto==numChars){
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Ganaste");
+                builder.setMessage("Felicidades \n \n ");
+                builder.setPositiveButton("Jugar de nuevo", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        MainActivity2.this.iniciarJuego();
+                    }
+                });
+                builder.show();
+
+            }
+        }else if(parteActual<sizeParts){
+            persona[parteActual].setVisibility(View.VISIBLE);
+            parteActual++;
+        }else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Perdiste");
+            builder.setPositiveButton("Jugar de nuevo", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    MainActivity2.this.iniciarJuego();
+                }
+            });
+            builder.show();
+        }
 
     }
 
