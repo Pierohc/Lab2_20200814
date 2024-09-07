@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,6 +21,14 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity {
+
+    private String palabraActual;
+    private Random rand = new Random(); ;
+    private TextView[] charViews;
+    private LinearLayout layoutPalabras;
+    private Letras adaptador;
+    private GridView gridView;
+    private String palabras[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +53,11 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
-
+        palabras = getResources().getStringArray(R.array.words);
         layoutPalabras = findViewById(R.id.palabras);
+        gridView=findViewById(R.id.grid);
+
+        iniciarJuego();
 
 
 
@@ -60,13 +72,10 @@ public class MainActivity2 extends AppCompatActivity {
 
 
 
-    private String palabraActual;
-    private Random rand;
-    private String[] palabras = {"FIBRA","REDES","ANTENA","PROPA","CLOUD","TELECO"};
-    private TextView[] charViews;
-    private LinearLayout layoutPalabras;
+
     public void iniciarJuego(){
         String palabraAdivinar = palabras[rand.nextInt(palabras.length)];
+        System.out.println(palabraAdivinar);
 
         while(palabraAdivinar.equals(palabraActual))palabraAdivinar=palabras[rand.nextInt(palabras.length)];
 
@@ -76,13 +85,17 @@ public class MainActivity2 extends AppCompatActivity {
 
         for(int i=0; i<palabraActual.length();i++){
             charViews[i]=new TextView(this);
-            charViews[i].setText(palabraActual.charAt(i));
+            charViews[i].setText(String.valueOf(palabraActual.charAt(i)));
             charViews[i].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
             charViews[i].setGravity(Gravity.CENTER);
-            charViews[i].setTextColor(Color.BLUE);
+            charViews[i].setTextColor(Color.WHITE);
             charViews[i].setBackgroundResource(R.drawable.underline);
             layoutPalabras.addView(charViews[i]);
         }
+
+        adaptador=new Letras(this);
+        gridView.setAdapter(adaptador);
+
 
 
     }

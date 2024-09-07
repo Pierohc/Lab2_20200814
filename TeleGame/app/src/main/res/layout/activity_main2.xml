@@ -67,8 +67,9 @@
             android:layout_marginTop="22dp"
             android:layout_gravity="end|bottom"
             android:paddingBottom="10dp"
-            app:srcCompat="@drawable/head1_sinFondo"
-            android:visibility="invisible"/>
+            app:srcCompat="@drawable/head1_nf"
+            android:visibility="invisible"
+            />
 
         <ImageView
             android:id="@+id/torso"
@@ -78,8 +79,9 @@
             android:layout_marginTop="72dp"
             android:layout_gravity="end|bottom"
             android:paddingBottom="10dp"
-            app:srcCompat="@drawable/Torso_sinFondo"
-            android:visibility="invisible"/>
+            app:srcCompat="@drawable/torso_nf"
+            android:visibility="invisible"
+           />
 
 
         <ImageView
@@ -90,8 +92,9 @@
             android:layout_marginTop="150dp"
             android:layout_gravity="end|bottom"
             android:paddingBottom="10dp"
-            app:srcCompat="@drawable/brazodere_piernaizq_sinfondo"
-            android:visibility="invisible"/>
+            app:srcCompat="@drawable/brazodere_piernaizq_nf"
+            android:visibility="invisible"
+            />
 
         <ImageView
             android:id="@+id/left_leght"
@@ -101,8 +104,9 @@
             android:layout_marginTop="150dp"
             android:layout_gravity="end|bottom"
             android:paddingBottom="10dp"
-            app:srcCompat="@drawable/BrazoIzq_PiernaDere_sinFondo"
-            android:visibility="invisible"/>
+            app:srcCompat="@drawable/brazoizq_piernadere_nf"
+            android:visibility="invisible"
+           />
 
         <ImageView
             android:id="@+id/right_arm"
@@ -112,8 +116,9 @@
             android:layout_marginTop="88dp"
             android:layout_gravity="end|bottom"
             android:paddingBottom="10dp"
-            app:srcCompat="@drawable/BrazoDere_PiernaIzq_sinFondo"
-            android:visibility="invisible"/>
+            app:srcCompat="@drawable/brazoizq_piernadere_nf"
+            android:visibility="invisible"
+            />
 
         <ImageView
             android:id="@+id/left_arm"
@@ -123,8 +128,9 @@
             android:layout_marginTop="88dp"
             android:layout_gravity="end|bottom"
             android:paddingBottom="10dp"
-            app:srcCompat="@drawable/BrazoIzq_PiernaDere_sinFondo"
-            android:visibility="invisible"/>
+            app:srcCompat="@drawable/brazodere_piernaizq_nf"
+            android:visibility="invisible"
+            />
     </RelativeLayout>
     
     <LinearLayout
@@ -135,10 +141,12 @@
         android:background="@android:color/white"
         android:padding="10dp"
         android:orientation="horizontal"
-        android:gravity="center" />
+        android:gravity="center"
+        />
 
 
     <GridView
+        android:id="@+id/grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
