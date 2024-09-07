@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -36,6 +38,12 @@ public class MainActivity2 extends AppCompatActivity {
     private ImageView[]persona;
     private int sizeParts = 6;
     private int parteActual;
+    private Handler handler = new Handler();
+    private Runnable runnable;
+    private int tiempo = 0;
+    private TextView textViewGanaste;
+    private Button buttonNewGame;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +64,14 @@ public class MainActivity2 extends AppCompatActivity {
         toolbarIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirActivity1(view); // Llama a tu método para abrir la otra actividad
+                abrirActivity1(view);
             }
         });
+
+        textViewGanaste = findViewById(R.id.textView4);
+        textViewGanaste.setVisibility(View.GONE);
+        buttonNewGame = findViewById(R.id.button2);
+        buttonNewGame.setVisibility(View.GONE);
 
         palabras = getResources().getStringArray(R.array.words);
         layoutPalabras = findViewById(R.id.palabras);
@@ -70,6 +83,8 @@ public class MainActivity2 extends AppCompatActivity {
         persona[3] = findViewById(R.id.right_arm);
         persona[4] = findViewById(R.id.left_leght);
         persona[5] = findViewById(R.id.right_leg);
+
+        HashMap<Integer, Integer> numJuegoTiempo = new HashMap<>();
 
         iniciarJuego();
 
@@ -94,6 +109,7 @@ public class MainActivity2 extends AppCompatActivity {
 
         charViews = new TextView[palabraActual.length()];
 
+        layoutPalabras.removeAllViews();
         for(int i=0; i<palabraActual.length();i++){
             charViews[i]=new TextView(this);
             charViews[i].setText(String.valueOf(palabraActual.charAt(i)));
@@ -109,7 +125,32 @@ public class MainActivity2 extends AppCompatActivity {
         numCorrecto=0;
         numChars = palabraActual.length();
         parteActual = 0;
+        tiempo = 0;
 
+        for(int i=0; i<sizeParts; i++){
+            persona[i].setVisibility(View.INVISIBLE);
+        }
+
+
+        iniciarContador(); // Inicia el contador de tiempo
+
+    }
+
+
+    private void iniciarContador() {
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                tiempo++;
+                System.out.println("Segundos: " + tiempo);
+                handler.postDelayed(this, 1000);
+            }
+        };
+        handler.post(runnable);
+    }
+
+    private void detenerContador() {
+        handler.removeCallbacks(runnable);
     }
 
 
@@ -131,34 +172,31 @@ public class MainActivity2 extends AppCompatActivity {
 
         if(palabraCorrecta){
             if(numCorrecto==numChars){
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle("Ganaste");
-                builder.setMessage("Felicidades \n \n ");
-                builder.setPositiveButton("Jugar de nuevo", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        MainActivity2.this.iniciarJuego();
-                    }
-                });
-                builder.show();
+                detenerContador(); // Detén el contador cuando el usuario gana
+
+                String mensaje = "Ganó / Terminó en " + tiempo + " segundos";
+                textViewGanaste.setText(mensaje);
+                textViewGanaste.setVisibility(View.VISIBLE);
+
 
             }
         }else if(parteActual<sizeParts){
             persona[parteActual].setVisibility(View.VISIBLE);
             parteActual++;
         }else{
+            detenerContador(); // Detén el contador cuando el usuario pierde
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("Perdiste");
-            builder.setPositiveButton("Jugar de nuevo", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    MainActivity2.this.iniciarJuego();
-                }
-            });
+            builder.setPositiveButton("Jugar de nuevo", (dialogInterface, i) -> iniciarJuego());
             builder.show();
         }
 
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        detenerContador();
+    }
 
 }
+

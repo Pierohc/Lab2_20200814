@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     public void abrirActivity2(View view){

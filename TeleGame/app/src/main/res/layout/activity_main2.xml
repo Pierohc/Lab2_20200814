@@ -159,5 +159,25 @@
         android:stretchMode="columnWidth"
         android:verticalSpacing="5dp" />
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="¡Ganaste! / Tiempo: 0 segundos"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nuevo Juego"
+        android:visibility="gone"/>
+
+
+
+
 
 </LinearLayout>
