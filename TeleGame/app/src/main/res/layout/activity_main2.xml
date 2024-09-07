@@ -43,26 +43,107 @@
             android:layout_gravity="end"
             android:src="@drawable/baseline_query_stats_24" />
     </androidx.appcompat.widget.Toolbar>
-
-    <View
+    
+    
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#000000"
-        android:layout_marginBottom="30dp"/>
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingTop="20dp"
+        android:paddingLeft="20dp">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="254dp"
-        android:layout_height="255dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/antenna" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="254dp"
+            android:layout_height="255dp"
+            android:layout_gravity="center"
+            app:srcCompat="@drawable/antenna" />
+
+        <ImageView
+            android:id="@+id/head"
+            android:layout_width="64dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="217dp"
+            android:layout_marginTop="22dp"
+            android:layout_gravity="end|bottom"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/head1_sinFondo"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/torso"
+            android:layout_width="94dp"
+            android:layout_height="95dp"
+            android:layout_marginStart="204dp"
+            android:layout_marginTop="72dp"
+            android:layout_gravity="end|bottom"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/Torso_sinFondo"
+            android:visibility="invisible"/>
+
+
+        <ImageView
+            android:id="@+id/right_leg"
+            android:layout_width="54dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="201dp"
+            android:layout_marginTop="150dp"
+            android:layout_gravity="end|bottom"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/brazodere_piernaizq_sinfondo"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/left_leght"
+            android:layout_width="54dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="150dp"
+            android:layout_gravity="end|bottom"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/BrazoIzq_PiernaDere_sinFondo"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/right_arm"
+            android:layout_width="54dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="201dp"
+            android:layout_marginTop="88dp"
+            android:layout_gravity="end|bottom"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/BrazoDere_PiernaIzq_sinFondo"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/left_arm"
+            android:layout_width="54dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="250dp"
+            android:layout_marginTop="88dp"
+            android:layout_gravity="end|bottom"
+            android:paddingBottom="10dp"
+            app:srcCompat="@drawable/BrazoIzq_PiernaDere_sinFondo"
+            android:visibility="invisible"/>
+    </RelativeLayout>
+    
+    <LinearLayout
+        android:id="@+id/palabras"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="@android:color/white"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:gravity="center" />
+
 
     <GridView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
-        android:background="@android:color/black"
+        android:background="@android:color/white"
         android:horizontalSpacing="5dp"
         android:numColumns="7"
         android:padding="5dp"
