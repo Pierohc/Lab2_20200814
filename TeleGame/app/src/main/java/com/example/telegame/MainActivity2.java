@@ -3,6 +3,7 @@ package com.example.telegame;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
@@ -27,7 +28,7 @@ import java.util.Random;
 public class MainActivity2 extends AppCompatActivity {
 
     private String palabraActual;
-    private Random rand = new Random(); ;
+    private Random rand = new Random();
     private TextView[] charViews;
     private LinearLayout layoutPalabras;
     private Letras adaptador;
@@ -43,6 +44,8 @@ public class MainActivity2 extends AppCompatActivity {
     private int tiempo = 0;
     private TextView textViewGanaste;
     private Button buttonNewGame;
+    private int numJuego = 0;
+    HashMap<String, String> numJuegoTiempo = new HashMap<>();
 
 
     @Override
@@ -60,6 +63,10 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
 
+        Intent intent = getIntent();
+        String nombreUsuario = intent.getStringExtra("nombre_usuario");
+
+
         ImageView toolbarIcon = findViewById(R.id.toolbar_icon);
         toolbarIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,10 +75,22 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
+        ImageView toolbarIcon2 = findViewById(R.id.toolbar_icon2);
+        toolbarIcon2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirActivity3(view, nombreUsuario);
+            }
+        });
+
+
         textViewGanaste = findViewById(R.id.textView4);
         textViewGanaste.setVisibility(View.GONE);
         buttonNewGame = findViewById(R.id.button2);
         buttonNewGame.setVisibility(View.GONE);
+
+        buttonNewGame.setOnClickListener(view -> iniciarJuego());
+
 
         palabras = getResources().getStringArray(R.array.words);
         layoutPalabras = findViewById(R.id.palabras);
@@ -84,7 +103,7 @@ public class MainActivity2 extends AppCompatActivity {
         persona[4] = findViewById(R.id.left_leght);
         persona[5] = findViewById(R.id.right_leg);
 
-        HashMap<Integer, Integer> numJuegoTiempo = new HashMap<>();
+
 
         iniciarJuego();
 
@@ -96,10 +115,22 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void abrirActivity3(View view, String nombreUsuario){
+        Intent intent = new Intent(this, EstadisticasActivity.class);
+        intent.putExtra("username", nombreUsuario);
+        startActivity(intent);
+    }
+
 
 
 
     public void iniciarJuego(){
+
+        textViewGanaste = findViewById(R.id.textView4);
+        textViewGanaste.setVisibility(View.GONE);
+        buttonNewGame = findViewById(R.id.button2);
+        buttonNewGame.setVisibility(View.GONE);
+
         String palabraAdivinar = palabras[rand.nextInt(palabras.length)];
         System.out.println(palabraAdivinar);
 
@@ -178,6 +209,9 @@ public class MainActivity2 extends AppCompatActivity {
                 textViewGanaste.setText(mensaje);
                 textViewGanaste.setVisibility(View.VISIBLE);
 
+                buttonNewGame.setVisibility(View.VISIBLE);
+
+                numJuegoTiempo.put("Juego 1: ", "Terminó en " + tiempo + " segundos");
 
             }
         }else if(parteActual<sizeParts){

@@ -17,7 +17,6 @@ public class Letras extends BaseAdapter {
         letras = new String[26];
         for(int i=0; i<letras.length; i++){
             letras[i] = String.valueOf((char) ('A' + i));
-            System.out.println(letras[i]);
         }
         letrasInfo=LayoutInflater.from(context);
     }
@@ -44,9 +43,7 @@ public class Letras extends BaseAdapter {
         }
         Button btnLetter = view.findViewById(R.id.buttonLetra);
         String letra = letras[i];
-        System.out.println(letra);
         btnLetter.setText(letra);
-
         return view;
     }
 

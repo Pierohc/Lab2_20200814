@@ -43,8 +43,12 @@
             android:layout_gravity="end"
             android:src="@drawable/baseline_query_stats_24" />
     </androidx.appcompat.widget.Toolbar>
-    
-    
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#000000" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
