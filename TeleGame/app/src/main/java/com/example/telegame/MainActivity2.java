@@ -22,6 +22,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -44,8 +45,8 @@ public class MainActivity2 extends AppCompatActivity {
     private int tiempo = 0;
     private TextView textViewGanaste;
     private Button buttonNewGame;
-    private int numJuego = 0;
-    HashMap<String, String> numJuegoTiempo = new HashMap<>();
+    private static ArrayList<Integer> tiempos = new ArrayList<>(); // Lista estática para compartir entre actividades
+
 
 
     @Override
@@ -79,7 +80,7 @@ public class MainActivity2 extends AppCompatActivity {
         toolbarIcon2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirActivity3(view, nombreUsuario);
+                abrirActivity3(view, nombreUsuario, tiempos);
             }
         });
 
@@ -115,9 +116,10 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void abrirActivity3(View view, String nombreUsuario){
+    public void abrirActivity3(View view, String nombreUsuario, ArrayList<Integer> tiempos){
         Intent intent = new Intent(this, EstadisticasActivity.class);
         intent.putExtra("username", nombreUsuario);
+        intent.putExtra("tiempos", tiempos);
         startActivity(intent);
     }
 
@@ -163,7 +165,7 @@ public class MainActivity2 extends AppCompatActivity {
         }
 
 
-        iniciarContador(); // Inicia el contador de tiempo
+        iniciarContador();
 
     }
 
@@ -203,7 +205,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         if(palabraCorrecta){
             if(numCorrecto==numChars){
-                detenerContador(); // Detén el contador cuando el usuario gana
+                detenerContador();
+                tiempos.add(tiempo);
 
                 String mensaje = "Ganó / Terminó en " + tiempo + " segundos";
                 textViewGanaste.setText(mensaje);
@@ -211,18 +214,18 @@ public class MainActivity2 extends AppCompatActivity {
 
                 buttonNewGame.setVisibility(View.VISIBLE);
 
-                numJuegoTiempo.put("Juego 1: ", "Terminó en " + tiempo + " segundos");
 
             }
         }else if(parteActual<sizeParts){
             persona[parteActual].setVisibility(View.VISIBLE);
             parteActual++;
         }else{
-            detenerContador(); // Detén el contador cuando el usuario pierde
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Perdiste");
-            builder.setPositiveButton("Jugar de nuevo", (dialogInterface, i) -> iniciarJuego());
-            builder.show();
+            detenerContador();
+            String mensaje = "Perdiste";
+            textViewGanaste.setText(mensaje);
+            textViewGanaste.setVisibility(View.VISIBLE);
+
+            buttonNewGame.setVisibility(View.VISIBLE);
         }
 
     }

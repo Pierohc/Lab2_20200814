@@ -3,7 +3,9 @@ package com.example.telegame;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -12,9 +14,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+
 public class EstadisticasActivity extends AppCompatActivity {
 
     private TextView jugador;
+    private ListView listView;
+    private ArrayList<Integer> tiempos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,19 @@ public class EstadisticasActivity extends AppCompatActivity {
 
         jugador = findViewById(R.id.jugador);
         jugador.setText("Jugador: " + nombre_usuario);
+
+        listView = findViewById(R.id.listView);
+
+        tiempos = (ArrayList<Integer>) intent.getSerializableExtra("tiempos");
+
+        ArrayList<String> tiemposStrings = new ArrayList<>();
+
+        for (Integer tiempo : tiempos) {
+            tiemposStrings.add("Juego " + (tiempos.indexOf(tiempo)+ 1) + ": Terminó en " + tiempo + "s");
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tiemposStrings);
+        listView.setAdapter(adapter);
 
         ImageView toolbarIcon = findViewById(R.id.toolbar_icon);
         toolbarIcon.setOnClickListener(new View.OnClickListener() {
