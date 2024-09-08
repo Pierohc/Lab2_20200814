@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class Letras extends BaseAdapter {
 
     //Se usó ChatGPT para poder implementar las letras mediante un adaptador y ponerlos en un grid creado anteriormente
-    //La clase al extender de BaseAdapter automaticamente se crean los metodos que incluyen un "@Override"
+    //La clase al extender de BaseAdapter, obliga a que se crean los metodos que incluyen un "@Override"
     //en la parte superior.
 
     private String[] letras;
