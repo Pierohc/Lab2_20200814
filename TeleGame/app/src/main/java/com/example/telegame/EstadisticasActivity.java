@@ -35,10 +35,20 @@ public class EstadisticasActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String nombre_usuario = intent.getStringExtra("username");
-        System.out.println(nombre_usuario);
+        String nombre_usuario2 = intent.getStringExtra("username2");
+        String nombre_usuario3 = intent.getStringExtra("username3");
+
+
+
 
         jugador = findViewById(R.id.jugador);
-        jugador.setText("Jugador: " + nombre_usuario);
+        if(nombre_usuario !=null){
+            jugador.setText("Jugador: " + nombre_usuario);
+        }else if(nombre_usuario2 != null){
+            jugador.setText("Jugador: " + nombre_usuario2);
+        }else{
+            jugador.setText("Jugador: " + nombre_usuario3);
+        }
 
         listView = findViewById(R.id.listView);
 
@@ -57,15 +67,17 @@ public class EstadisticasActivity extends AppCompatActivity {
         toolbarIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirActivity2(view);
+                abrirActivity2(view, nombre_usuario, nombre_usuario2);
             }
         });
 
 
     }
 
-    public void abrirActivity2(View view){
+    public void abrirActivity2(View view, String username, String username2){
         Intent intent = new Intent(this, MainActivity2.class);
+        intent.putExtra("username", username);
+        intent.putExtra("username2", username2);
         startActivity(intent);
     }
 

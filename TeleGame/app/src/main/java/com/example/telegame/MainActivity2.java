@@ -66,6 +66,11 @@ public class MainActivity2 extends AppCompatActivity {
 
         Intent intent = getIntent();
         String nombreUsuario = intent.getStringExtra("nombre_usuario");
+        String nombreUsuario2 = intent.getStringExtra("username");
+        String nombreUsuario3 = intent.getStringExtra("username2");
+
+
+
 
 
         ImageView toolbarIcon = findViewById(R.id.toolbar_icon);
@@ -80,7 +85,7 @@ public class MainActivity2 extends AppCompatActivity {
         toolbarIcon2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                abrirActivity3(view, nombreUsuario, tiempos);
+                abrirActivity3(view, nombreUsuario, tiempos, nombreUsuario2, nombreUsuario3);
             }
         });
 
@@ -116,9 +121,11 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void abrirActivity3(View view, String nombreUsuario, ArrayList<Integer> tiempos){
+    public void abrirActivity3(View view, String nombreUsuario, ArrayList<Integer> tiempos, String nombreUsuario2, String nombreUsuario3){
         Intent intent = new Intent(this, EstadisticasActivity.class);
         intent.putExtra("username", nombreUsuario);
+        intent.putExtra("username2", nombreUsuario2);
+        intent.putExtra("username3", nombreUsuario3);
         intent.putExtra("tiempos", tiempos);
         startActivity(intent);
     }
