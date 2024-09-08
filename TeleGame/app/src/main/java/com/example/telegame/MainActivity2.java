@@ -70,9 +70,6 @@ public class MainActivity2 extends AppCompatActivity {
         String nombreUsuario3 = intent.getStringExtra("username2");
 
 
-
-
-
         ImageView toolbarIcon = findViewById(R.id.toolbar_icon);
         toolbarIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,10 +106,7 @@ public class MainActivity2 extends AppCompatActivity {
         persona[4] = findViewById(R.id.left_leght);
         persona[5] = findViewById(R.id.right_leg);
 
-
-
         iniciarJuego();
-
     }
 
 
@@ -177,6 +171,8 @@ public class MainActivity2 extends AppCompatActivity {
     }
 
 
+    //Se uso ChatGPT para implementar de mejor manera un contador dado que con un while se obtenian errores al momento de abrir el activity
+    //A su vez, se presentaron varias formas de implementar el contador pero elegi la que usaba la opcion "Runnable"
     private void iniciarContador() {
         runnable = new Runnable() {
             @Override

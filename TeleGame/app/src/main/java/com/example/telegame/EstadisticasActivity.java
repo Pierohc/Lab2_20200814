@@ -60,6 +60,7 @@ public class EstadisticasActivity extends AppCompatActivity {
             tiemposStrings.add("Juego " + (tiempos.indexOf(tiempo)+ 1) + ": Terminó en " + tiempo + "s");
         }
 
+        //Se usó ChatGPT para poder mostrar el arraylist relacionado a un ListView
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tiemposStrings);
         listView.setAdapter(adapter);
 
